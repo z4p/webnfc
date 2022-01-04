@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NFC</title>
+    <script src="js/nfc.js"></script>
+</head>
+<body>
+    <button id="btnScan" type="button">NFC Scan...</button>
+    <div id="log"></div>
+
+    <script>
+        const nfcManager = new NfcManager(message => {
+            document.getElementById('log').innerHTML += `<p>${ message }</p>`;
+        });
+
+        document.getElementById('btnScan').addEventListener('click', () => {
+            nfcManager.exec();
+        });
+    </script>
+</body>
+</html>
