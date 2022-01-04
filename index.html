@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NFC</title>
     <script src="js/nfc.js"></script>
+    <script src="js/sound.js"></script>
 </head>
 <body>
     <button id="btnScan" type="button">NFC Scan...</button>
     <div id="log"></div>
 
     <script>
-        const nfcManager = new NfcManager(message => {
+        const logMessage = (message) => {
             document.getElementById('log').innerHTML += `<p>${ message }</p>`;
+        };
+
+        const soundManager = new SoundManager();
+        const nfcManager = new NfcManager(logMessage, () => {
+            soundManager.playSound(700, 300);
         });
 
         document.getElementById('btnScan').addEventListener('click', () => {
+            soundManager.playSound(440, 1000);
             nfcManager.exec();
         });
     </script>
